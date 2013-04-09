@@ -22,7 +22,8 @@ public class RobotTemplate extends SimpleRobot
     JoystickButton fire;
     Shooter shooter;
     Hopper hopper;
-    Solenoid tongue;
+    Solenoid tongueA;
+    Solenoid tongueB;
     boolean shooting = false;
     
     //Climbing
@@ -77,7 +78,8 @@ public class RobotTemplate extends SimpleRobot
             fire        = new JoystickButton(stick, Wiring.XBOX_X_BUTTON);
             shooter     = new Shooter(Wiring.SHOOTER_MOTOR);
             hopper      = new Hopper(Wiring.HOPPER_MOTOR);
-            tongue      = new Solenoid(Wiring.TONGUE);
+            tongueA     = new Solenoid(Wiring.TONGUE_A);
+            tongueB     = new Solenoid(Wiring.TONGUE_B);
             
             //Autonomous Stuff
             autonomousA = new DigitalInput(Wiring.AUTONOMOUS_SWITCH_A);
@@ -140,13 +142,16 @@ public class RobotTemplate extends SimpleRobot
             shooter.stop();
             shooting = false;
         }
+        
         if(stick.getRawButton(Wiring.XBOX_Y_BUTTON))
         {
-            tongue.set(true);
+            tongueA.set(true);
+            tongueB.set(false);
         }
         else
         {
-            tongue.set(false);
+            tongueA.set(false);
+            tongueB.set(true);
         }
         // shoot if not already pressed down
         if(shooting)
@@ -511,6 +516,19 @@ public class RobotTemplate extends SimpleRobot
      
      public void test()
      {
+        while(isEnabled())
+        {
+            if(stick.getRawButton(Wiring.XBOX_Y_BUTTON))
+            {
+                tongueA.set(true);
+                tongueB.set(false);
+            }
+            else
+            {
+                tongueA.set(false);
+                tongueB.set(true);
+            }
+        }
         climb.goDownManual(Wiring.CLIMB_DOWN);
      }
      

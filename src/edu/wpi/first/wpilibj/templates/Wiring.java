@@ -27,7 +27,8 @@ public class Wiring
     static public final int HOPPER_MOTOR                = 4;
  
     // solenoid
-    static public final int TONGUE                      = 5;
+    static public final int TONGUE_A                    = 5;
+    static public final int TONGUE_B                    = 6;
     static public final int CLIMB_SOLENOID_UP           = 2;
     static public final int CLIMB_SOLENOID_DOWN         = 4;
     static public final int CLIMBING_SOLENOID_FORWARD   = 3;
